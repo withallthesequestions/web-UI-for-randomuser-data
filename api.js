@@ -62,35 +62,41 @@
 let allUsers = [];
 let table = document.getElementById("table");
 
-fetch("https://randomuser.me/api/?results=10")
+// This fetches all the data from the api, and runs a function on it. The function is tableMaker()
+
+fetch("https://randomuser.me/api/?results=50")
   .then((response) => response.json())
   .then((data) => {
-    console.log(data);
+    // console.log(data);
     console.log(data.results);
     allUsers = data.results;
     tableMaker(allUsers);
   });
 
-// Now we make a function to do all the work.
+// The tableMaker() function.
 
 function tableMaker(allUsers) {
   let allMarkup = "";
   for (var x = 0; x < allUsers.length; x++) {
     let user = allUsers[x];
-    console.log(user.name.first, user.name.last);
+    // console.log(user.name.first, user.name.last);
     let markup = `<tr>
+    <td> ${user.gender} </td>
+    
     <td> ${user.name.first} </td>
     <td> ${user.name.last} </td>
     <td> ${user.location.street.number}, ${user.location.street.name}, ${user.location.city}, ${user.location.state}, ${user.location.postcode} </td>
     <td></td>
     <tr>`;
-    console.log(markup);
+    // console.log(markup);
     allMarkup += markup;
   }
 
   let tableHTML = `
   <thead>
   <tr>
+  <td>Gender:</td>
+  
   <td>First Name:</td>
   <td>Last Name:</td>
   <td>Address:</td>
@@ -100,3 +106,30 @@ function tableMaker(allUsers) {
   `;
   table.innerHTML = tableHTML;
 }
+
+male.addEventListener("click", function (event) {
+  console.log("male click");
+  table.innerHTML = "";
+  userSubset = [];
+  for (i = 0; i < allUsers.length; i++) {
+    let user = allUsers[i];
+    if (user.gender === "male") {
+      console.log(user.gender + user.name.first + user.name.last);
+      userSubset.push(user);
+      tableMaker(userSubset);
+    }
+  }
+});
+
+/* Female version goes here */
+
+both.addEventListener("click", function (event) {
+  console.log("both click");
+  table.innerHTML = "";
+  userSubset = [];
+  for (i = 0; i < allUsers.length; i++) {
+    let user = allUsers[i];
+    userSubset.push(user);
+    tableMaker(userSubset);
+  }
+});
