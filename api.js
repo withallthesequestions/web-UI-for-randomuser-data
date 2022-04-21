@@ -123,6 +123,20 @@ male.addEventListener("click", function (event) {
 
 /* Female version goes here */
 
+female.addEventListener("click", function (event) {
+  console.log("female click");
+  table.innerHTML = "";
+  userSubset = [];
+  for (i = 0; i < allUsers.length; i++) {
+    let user = allUsers[i];
+    if (user.gender === "female") {
+      console.log(user.gender + user.name.first + user.name.last);
+      userSubset.push(user);
+      tableMaker(userSubset);
+    }
+  }
+});
+
 both.addEventListener("click", function (event) {
   console.log("both click");
   table.innerHTML = "";
