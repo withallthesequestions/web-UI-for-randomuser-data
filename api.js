@@ -82,7 +82,7 @@ function tableMaker(allUsers) {
     // console.log(user.name.first, user.name.last);
     let markup = `<tr>
     <td> ${user.gender} </td>
-    
+    <td> ${user.dob.age} </td>
     <td> ${user.name.first} </td>
     <td> ${user.name.last} </td>
     <td> ${user.location.street.number}, ${user.location.street.name}, ${user.location.city}, ${user.location.state}, ${user.location.postcode} </td>
@@ -96,7 +96,7 @@ function tableMaker(allUsers) {
   <thead>
   <tr>
   <td>Gender:</td>
-  
+  <td>Age:</td>
   <td>First Name:</td>
   <td>Last Name:</td>
   <td>Address:</td>
@@ -107,43 +107,76 @@ function tableMaker(allUsers) {
   table.innerHTML = tableHTML;
 }
 
+// Gender select: Male
+
 male.addEventListener("click", function (event) {
-  console.log("male click");
   table.innerHTML = "";
   userSubset = [];
   for (i = 0; i < allUsers.length; i++) {
     let user = allUsers[i];
     if (user.gender === "male") {
-      console.log(user.gender + user.name.first + user.name.last);
+      // console.log(user.gender + user.name.first + user.name.last);
       userSubset.push(user);
       tableMaker(userSubset);
     }
   }
 });
 
-/* Female version goes here */
+// Gender select: female
 
 female.addEventListener("click", function (event) {
-  console.log("female click");
   table.innerHTML = "";
   userSubset = [];
   for (i = 0; i < allUsers.length; i++) {
     let user = allUsers[i];
     if (user.gender === "female") {
-      console.log(user.gender + user.name.first + user.name.last);
+      // console.log(user.gender + user.name.first + user.name.last);
       userSubset.push(user);
       tableMaker(userSubset);
     }
   }
 });
 
+// Gender select: both
+
 both.addEventListener("click", function (event) {
-  console.log("both click");
   table.innerHTML = "";
   userSubset = [];
   for (i = 0; i < allUsers.length; i++) {
     let user = allUsers[i];
     userSubset.push(user);
     tableMaker(userSubset);
+  }
+});
+
+// Reset Button
+
+resetButton.addEventListener("click", function (event) {
+  table.innerHTML = "";
+  userSubset = [];
+  for (i = 0; i < allUsers.length; i++) {
+    let user = allUsers[i];
+    userSubset.push(user);
+    tableMaker(userSubset);
+  }
+});
+
+// Clear Button
+
+clearButton.addEventListener("click", function (event) {
+  table.innerHTML = "";
+});
+
+// AARP Button
+
+aarpButton.addEventListener("click", function (event) {
+  table.innerHTML = "";
+  userSubset = [];
+  for (i = 0; i < allUsers.length; i++) {
+    let user = allUsers[i];
+    if (user.dob.age >= 49) {
+      userSubset.push(user);
+      tableMaker(userSubset);
+    }
   }
 });

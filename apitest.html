@@ -15,14 +15,26 @@
 
 <body>
   <div id="testId" class="sortMenu">
-    Gender selector:
-    <form action="/action_page.php">
-      <input type="radio" id="male" name="fav_language" value="Male" />
-      <label for="male">Male</label><br />
-      <input type="radio" id="female" name="fav_language" value="Female" />
-      <label for="female">Female</label><br />
-      <input type="radio" id="both" name="fav_language" value="Both" />
-      <label for="both">Both</label><br />
+
+    <table class="sortMenu">
+      <tr>
+        <td class="sortMenu"><button id="resetButton">Reset</button><br>
+          <button id="clearButton">Clear</button>
+        </td>
+        <td class="sortMenu">Gender selector:<br>
+          <!-- <form action="/action_page.php"> -->
+          <input type="radio" id="male" name="fav_language" value="Male" />
+          <label for="male">Male</label><br />
+          <input type="radio" id="female" name="fav_language" value="Female" />
+          <label for="female">Female</label><br />
+          <input type="radio" id="both" name="fav_language" value="Both" />
+          <label for="both">Both</label>
+        </td>
+        <td class="sortMenu">
+          <button id="aarpButton">AARP</button>
+        </td>
+      </tr>
+    </table>
   </div>
   <table id="table"></table>
 </body>
