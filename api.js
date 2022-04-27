@@ -86,7 +86,7 @@ function tableMaker(allUsers) {
     <td> ${user.name.first} </td>
     <td> ${user.name.last} </td>
     <td> ${user.location.street.number}, ${user.location.street.name}, ${user.location.city}, ${user.location.state}, ${user.location.postcode} </td>
-    <td></td>
+    <td><img src="https://countryflagsapi.com/png/${user.nat}" width="50" height="25" /></td>
     <tr>`;
     // console.log(markup);
     allMarkup += markup;
@@ -180,3 +180,46 @@ aarpButton.addEventListener("click", function (event) {
     }
   }
 });
+
+/* My search */
+
+/* Zintis' version, pauses around 1:06
+
+search.addEventListener("keyup", function (event) {
+  console.log(event.target.value);
+  let inputText = event.target.value.trim(); // This removes whitespace for easy search
+  if (inputText != "") {
+    // If input text has something in it
+    table.innerHTML = "";
+    let userSubset = [];
+    for (i = 0; i < allUsers.length; i++) {
+      let user = allUsers[i];
+      let userFullName = user.name.first + " " + user.name.last;
+      if (userFullName.includes(inputText)) {
+        console.log(userFullName);
+        userSubset.push(user);
+      }
+    }
+    tableMaker(userSubset);
+  } else {
+    tableMaker(allUsers);
+  }
+});
+ */
+
+/* Explanation:
+
+On a keyboard event, store the text input. If there is any text in the input window, create a blank html table and a blank list of users, to be filled in later.
+
+Create a list of user search data (to run the search against). This is done to avoid complications with character casing.
+
+If a user search item contains the text input, push it to the array, and make a display table with the array. If not, show all empty results.
+
+*/
+
+/* Flag idea
+* There's an API that lets you do this. https://www.countryflagsapi.com/
+* It offers a very convenient nationality format (ISO-2) in common with the nationality code in the person array api.
+* I want to make it toggleable.
+
+*/
