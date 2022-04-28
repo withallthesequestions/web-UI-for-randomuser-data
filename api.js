@@ -64,10 +64,10 @@ let table = document.getElementById("table");
 
 // This fetches all the data from the api, and runs a function on it. The function is tableMaker()
 
-fetch("https://randomuser.me/api/?results=50")
+fetch("https://randomuser.me/api/?results=100")
   .then((response) => response.json())
   .then((data) => {
-    // console.log(data);
+    console.log(data);
     console.log(data.results);
     allUsers = data.results;
     tableMaker(allUsers);
@@ -100,6 +100,7 @@ function tableMaker(allUsers) {
   <td>First Name:</td>
   <td>Last Name:</td>
   <td>Address:</td>
+  <td>Flag:</td>
   </tr>
   </thead>
   <tbody>${allMarkup}</tbody>
@@ -181,22 +182,18 @@ aarpButton.addEventListener("click", function (event) {
   }
 });
 
-/* My search */
-
-/* Zintis' version, pauses around 1:06
+/* My search function. Based on Zintis'. I read Zintis' code (~1.06), interpreted its function, and tried to rebuild the function myself. */
 
 search.addEventListener("keyup", function (event) {
   console.log(event.target.value);
-  let inputText = event.target.value.trim(); // This removes whitespace for easy search
-  if (inputText != "") {
-    // If input text has something in it
+  let inputText = event.target.value.trim();
+  if (inputText !== "") {
     table.innerHTML = "";
     let userSubset = [];
     for (i = 0; i < allUsers.length; i++) {
       let user = allUsers[i];
       let userFullName = user.name.first + " " + user.name.last;
       if (userFullName.includes(inputText)) {
-        console.log(userFullName);
         userSubset.push(user);
       }
     }
@@ -205,21 +202,14 @@ search.addEventListener("keyup", function (event) {
     tableMaker(allUsers);
   }
 });
- */
 
-/* Explanation:
-
-On a keyboard event, store the text input. If there is any text in the input window, create a blank html table and a blank list of users, to be filled in later.
-
-Create a list of user search data (to run the search against). This is done to avoid complications with character casing.
-
-If a user search item contains the text input, push it to the array, and make a display table with the array. If not, show all empty results.
-
-*/
-
-/* Flag idea
+/*
+= Flag idea =
 * There's an API that lets you do this. https://www.countryflagsapi.com/
 * It offers a very convenient nationality format (ISO-2) in common with the nationality code in the person array api.
 * I want to make it toggleable.
+
+ASSIGNMENTS:
+-- Or, have clickable buttons on top for countries of origin. Click the button, show all results from country of origin. Or a button that shows all phone numbers.
 
 */
