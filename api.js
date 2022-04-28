@@ -64,7 +64,7 @@ let table = document.getElementById("table");
 
 // This fetches all the data from the api, and runs a function on it. The function is tableMaker()
 
-fetch("https://randomuser.me/api/?results=100")
+fetch("https://randomuser.me/api/?results=10")
   .then((response) => response.json())
   .then((data) => {
     console.log(data);
@@ -87,6 +87,7 @@ function tableMaker(allUsers) {
     <td> ${user.name.last} </td>
     <td> ${user.location.street.number}, ${user.location.street.name}, ${user.location.city}, ${user.location.state}, ${user.location.postcode} </td>
     <td><img src="https://countryflagsapi.com/png/${user.nat}" width="50" height="25" /></td>
+    
     <tr>`;
     // console.log(markup);
     allMarkup += markup;
@@ -175,7 +176,7 @@ aarpButton.addEventListener("click", function (event) {
   userSubset = [];
   for (i = 0; i < allUsers.length; i++) {
     let user = allUsers[i];
-    if (user.dob.age >= 49) {
+    if (user.dob.age >= 50) {
       userSubset.push(user);
       tableMaker(userSubset);
     }
@@ -210,6 +211,8 @@ search.addEventListener("keyup", function (event) {
 * I want to make it toggleable.
 
 ASSIGNMENTS:
--- Or, have clickable buttons on top for countries of origin. Click the button, show all results from country of origin. Or a button that shows all phone numbers.
+...or have clickable buttons on top for countries of origin. Click the button, show all results from country of origin. Or a button that shows all phone numbers.
+    * Everything I've read about this suggests I need jquery for it. Can I do it without?
+    * I had an idea involving injecting template literal code that created or deleted table columns in html.
 
 */
