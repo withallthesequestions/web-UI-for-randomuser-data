@@ -64,7 +64,7 @@ let table = document.getElementById("table");
 
 // This fetches all the data from the api, and runs a function on it. The function is tableMaker()
 
-fetch("https://randomuser.me/api/?results=10")
+fetch("https://randomuser.me/api/?results=50")
   .then((response) => response.json())
   .then((data) => {
     console.log(data);
