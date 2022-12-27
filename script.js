@@ -74,7 +74,12 @@ fetch("https://randomuser.me/api/?results=50")
   });
 
 // The tableMaker() function.
-
+// Variable structure: [ (4) table [ (3) tableHTML [(1) allMarkup [ (2) markup]]]]
+/* First, create variable allMarkup.
+Second, loop through all user data, and create a table, filling in specified data.
+Third, add above data to variable allMarkup.
+Fourth, create variable tableHTML, and add table structure to it. 
+Fifth, include allMarkup in tableHTML.*/
 function tableMaker(allUsers) {
   let allMarkup = "";
   for (var x = 0; x < allUsers.length; x++) {
@@ -109,6 +114,7 @@ function tableMaker(allUsers) {
   table.innerHTML = tableHTML;
 }
 
+//Table is finished above. Below, you will add additional selection functionality.
 // Gender select: Male
 
 male.addEventListener("click", function (event) {
