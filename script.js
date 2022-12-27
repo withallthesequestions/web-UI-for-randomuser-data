@@ -191,9 +191,12 @@ aarpButton.addEventListener("click", function (event) {
 
 /* My search function. Based on Zintis'. I read Zintis' code (~1.06), interpreted its function, and tried to rebuild the function myself. */
 
+// Find what you typed
 search.addEventListener("keyup", function (event) {
   console.log(event.target.value);
-  let inputText = event.target.value.trim();
+  // remove whitespace and lowercase everything, for searching easier
+  let inputText = event.target.value.trim().toLowerCase();
+  // search function.
   if (inputText !== "") {
     table.innerHTML = "";
     let userSubset = [];
@@ -205,6 +208,7 @@ search.addEventListener("keyup", function (event) {
       }
     }
     tableMaker(userSubset);
+    // If no input, no search, output whole list.
   } else {
     tableMaker(allUsers);
   }
