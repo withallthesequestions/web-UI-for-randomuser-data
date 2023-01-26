@@ -1,21 +1,21 @@
 // JSON object notation.
 // Some background: the data is in .json format. It contains three arrays (info, results, [[prototype]])
 
-/* Vanilla format */
+// Basic Fetch Syntax:
 
-/* fetch("https://randomuser.me/api/?results=10")
+/* fetch("https://randomuser.me/api/?results=5")
   .then((response) => response.json())
   .then((data) => {
     console.log(data);
   }); */
 
-/* Vanilla format, explained */
+// Vanilla format, explained
 
-/* fetch("https://randomuser.me/api/?results=10")
+/* fetch("https://randomuser.me/api/?results=5")
   .then((response) => response.json()) // this line seems to tell the code to read the code in .json format.
   .then((data) => {
     console.log(data);
-  }); // This line tells the code to do something. Only the part in {} should be modifiable. */
+  }); // This line tells the code to do something. Only the part in {} should be modified. */
 
 /* Narrowing down output to 'data.results'. Note that 'results' is a subset of 'data'. And note that 'data' is an arbitrary name defined in the antecedent of the function. */
 
@@ -29,7 +29,7 @@
 (a) Logs data.results
 (b) for all elements of the array, log first name. */
 
-/* fetch("https://randomuser.me/api/?results=10")
+/* fetch("https://randomuser.me/api/?results=5")
   .then((response) => response.json())
   .then((data) => {
     console.log(data.results);
@@ -64,7 +64,7 @@ let table = document.getElementById("table");
 
 // This fetches all the data from the api, and runs a function on it. The function is tableMaker()
 
-fetch("https://randomuser.me/api/?results=50")
+fetch("https://randomuser.me/api/?results=10")
   .then((response) => response.json())
   .then((data) => {
     console.log(data);
@@ -91,7 +91,8 @@ function tableMaker(allUsers) {
     <td> ${user.name.first} </td>
     <td> ${user.name.last} </td>
     <td> ${user.location.street.number}, ${user.location.street.name}, ${user.location.city}, ${user.location.state}, ${user.location.postcode} </td>
-    <td><img src="https://countryflagsapi.com/png/${user.nat}" width="50" height="25" /></td>
+
+   <!-- <td><img src="https://countryflagsapi.com/png/${user.nat}" width="50" height="25" /></td> -->
     
     <tr>`;
     // console.log(markup);
@@ -175,9 +176,9 @@ clearButton.addEventListener("click", function (event) {
   table.innerHTML = "";
 });
 
-// AARP Button
+// 50+ Button
 
-aarpButton.addEventListener("click", function (event) {
+fiftyPlus.addEventListener("click", function (event) {
   table.innerHTML = "";
   userSubset = [];
   for (i = 0; i < allUsers.length; i++) {
@@ -196,13 +197,16 @@ search.addEventListener("keyup", function (event) {
   console.log(event.target.value);
   // remove whitespace and lowercase everything, for searching easier
   let inputText = event.target.value.trim().toLowerCase();
-  // search function.
+  // search function
   if (inputText !== "") {
-    table.innerHTML = "";
+    //table.innerHTML = "";
     let userSubset = [];
     for (i = 0; i < allUsers.length; i++) {
       let user = allUsers[i];
-      let userFullName = user.name.first + " " + user.name.last;
+      let userFullName =
+        user.name.first.trim().toLowerCase() +
+        " " +
+        user.name.last.trim().toLowerCase();
       if (userFullName.includes(inputText)) {
         userSubset.push(user);
       }
