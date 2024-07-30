@@ -3,9 +3,8 @@ let HTMLTable = document.getElementById("table");
 let userDataArray = [];
 
 /* Fetch data from API, 
- * run function tableMaker() on data.results,
- * 
- *  */
+ * run function tableMaker() on data.results
+ */
 
 fetch(`https://randomuser.me/api/?results=${NUMBER_OF_RESULTS}`)
   .then((response) => response.json())
